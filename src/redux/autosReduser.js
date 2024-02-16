@@ -1,9 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { allCarsThunk } from './autosOperations';
+import { allCarsThunk, loadMoreCarsThunk } from './autosOperations';
 
 const INITIAL_STATE = {
   cars: null,
   page: 1,
+  fact: 12,
   total: 25,
   isLoading: false,
   error: null,
@@ -12,58 +13,42 @@ const INITIAL_STATE = {
 const autoSlice = createSlice({
   name: 'cars',
   initialState: INITIAL_STATE,
+  reducers: {
+    handlPages(state, _) {
+      state.page = state.page + 1;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(allCarsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cars = action.payload;
+        state.page = state.page + 1;
         state.error = null;
       })
-      //   .addCase(monthWaterThunk.fulfilled, (state, action) => {
-      //     state.isLoading = false;
-      //     state.monthWaterConsumption = action.payload;
-      //     state.error = null;
-      //   })
-      //   .addCase(addWaterThunk.fulfilled, (state, action) => {
-      //     state.isLoading = false;
-      //     if (state.todayWaterConsumption.length) {
-      //       state.todayWaterConsumption = [
-      //         ...state.todayWaterConsumption,
-      //         action.payload,
-      //       ];
-      //     } else {
-      //       state.todayWaterConsumption.push(action.payload);
-      //     }
-      //     state.error = null;
-      //   })
-      //   .addCase(deleteWaterThunk.fulfilled, (state, action) => {
-      //     state.isLoading = false;
-
-      //     state.todayWaterConsumption = state.todayWaterConsumption.filter(
-      //       portion => portion._id !== action.payload._id
-      //     );
-      //     state.error = null;
-      //   })
-      //   .addCase(updateWaterThunk.fulfilled, (state, action) => {
-      //     state.isLoading = false;
-
-      //     const indexToUpdate = state.todayWaterConsumption.findIndex(
-      //       portion => portion._id === action.payload._id
-      //     );
-      //     if (indexToUpdate !== -1) {
-      //       state.todayWaterConsumption[indexToUpdate] = action.payload;
-      //     }
-      //     state.error = null;
-      //   })
-
-      .addMatcher(isAnyOf(allCarsThunk.pending), state => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addMatcher(isAnyOf(allCarsThunk.rejected), (state, action) => {
+      .addCase(loadMoreCarsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
-      }),
+        state.cars = [...state.cars, ...action.payload];
+        state.fact = state.fact + 12;
+        state.page = state.page + 1;
+        state.error = null;
+      })
+
+      .addMatcher(
+        isAnyOf(allCarsThunk.pending, loadMoreCarsThunk.pending),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(allCarsThunk.rejected, loadMoreCarsThunk.rejected),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      ),
 });
 
+export const { handlPages } = autoSlice.actions;
 export const autoReducer = autoSlice.reducer;

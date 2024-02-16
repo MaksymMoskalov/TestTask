@@ -5,6 +5,12 @@ export const StyledContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 
+  .blocks-wrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .header {
     height: 60px;
     display: flex;

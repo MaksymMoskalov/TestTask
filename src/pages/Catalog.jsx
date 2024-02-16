@@ -1,41 +1,52 @@
 import React from 'react';
-// import { useState } from 'react-router-dom';
-// import { Blocks } from 'react-loader-spinner';
 import { CarList } from 'components/CarsList/CarList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { allCarsThunk } from '../redux/autosOperations';
-// import { selectCars } from '../redux/cars.selectors';
+import { allCarsThunk, loadMoreCarsThunk } from '../redux/autosOperations';
+import {
+  selectIsLoading,
+  selectFact,
+  selectTotal,
+  selectPage,
+} from '../redux/cars.selectors';
+import { Blocks } from 'react-loader-spinner';
+import { Filter } from 'components/Filter/Filter';
 
 const Catalog = () => {
   const disputch = useDispatch();
-  // const cars = useSelector(selectCars);
+  const isLoading = useSelector(selectIsLoading);
+  const fact = useSelector(selectFact);
+  const total = useSelector(selectTotal);
+  const page = useSelector(selectPage);
 
   useEffect(() => {
     disputch(allCarsThunk());
   }, [disputch]);
 
+  const onLoadMore = () => {
+    disputch(loadMoreCarsThunk(page));
+  };
+
   return (
     <section>
-      <form>
-        <label>
-          <span>Car brand</span>
-          <input type="text" />
-        </label>
-        <label>
-          <span>Price/ 1 hour</span>
-          <input type="text" />
-        </label>
-        <label>
-          <span>Сar mileage / km</span>
-          <input type="text" />
-        </label>
-        <label>
-          <input type="text" />
-        </label>
-        <button type="submit">Search</button>
-      </form>
+      <Filter />
       <CarList />
+      {fact < total ? (
+        <button type="button" onClick={onLoadMore}>
+          Load more
+        </button>
+      ) : (
+        <p>You have reviewed all the cars</p>
+      )}
+
+      {isLoading && (
+        <Blocks
+          height="150"
+          width="150"
+          color="#4fa94d"
+          wrapperClass="blocks-wrapper"
+        />
+      )}
     </section>
   );
 };
