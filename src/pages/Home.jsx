@@ -1,41 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { getTrendMovies } from 'service/moviesAPI';
+import React from 'react';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
-  const location = useLocation();
-
-  useEffect(() => {
-    const renderHome = async () => {
-      try {
-        const movieData = await getTrendMovies();
-        setMovies(movieData.results);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    renderHome();
-  }, []);
-
   return (
-    <ul>
-      {error && window.alert(error)}
-      {movies.map(({ id, original_title }) => {
-        return (
-          <li key={id}>
-            <Link
-              state={{ from: location }}
-              to={`/movies/${id}`}
-              className="movie-title"
-            >
-              <p>{original_title}</p>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1>
+        Ласкаво просимо до Car<span>Rent</span>
+      </h1>
+      <p>
+        Ми спеціалізується на наданні високоякісних послуг з оренди автомобілів
+        в Україні. Ми прагнемо забезпечити наших клієнтів найзручнішим та
+        надійним транспортним засобом для всіх їх потреб
+      </p>
+      <p>Наші послуги включають:</p>
+      <ul>
+        <li>
+          <h2>Широкий Вибір Автомобілів</h2>
+          <p>
+            Ми пропонуємо різноманітний парк автомобілів, щоб задовольнити
+            різноманітні вимоги клієнтів - від економічних моделей до
+            представницьких авто та позашляховиків.
+          </p>
+        </li>
+        <li>
+          <h2>Гнучкі Тарифи</h2>
+          <p>
+            Ми розробили гнучкий тарифний план, щоб відповідати різним бюджетам
+            та потребам наших клієнтів. Знижки для довгострокової оренди та
+            спеціальні умови для корпоративних клієнтів доступні.
+          </p>
+        </li>
+        <li>
+          <h2>Зручна Бронювання та Обслуговування</h2>
+          <p>
+            Ми пропонуємо онлайн-систему бронювання, щоб забезпечити легкість та
+            ефективність процесу. Наші спеціалісти готові вас порадити та
+            допомогти вибрати оптимальний автомобіль.
+          </p>
+        </li>
+        <li>
+          <h2>Система Підтримки Клієнтів</h2>
+          <p>
+            Наша служба підтримки доступна 24/7 для вирішення будь-яких питань
+            чи проблем, що можуть виникнути під час оренди автомобіля.
+          </p>
+        </li>
+      </ul>
+    </>
   );
 };
 

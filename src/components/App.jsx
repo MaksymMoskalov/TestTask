@@ -2,9 +2,10 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { StyledContainer } from 'Styles/Container.styled';
 import { Suspense, lazy } from 'react';
 import { Blocks } from 'react-loader-spinner';
+
 const Home = lazy(() => import('pages/Home'));
-const MovieInfo = lazy(() => import('pages/MovieInfo'));
-const Search = lazy(() => import('pages/Search'));
+const Catalog = lazy(() => import('pages/Catalog'));
+const Favorites = lazy(() => import('pages/Favorites'));
 
 export const App = () => {
   return (
@@ -14,8 +15,11 @@ export const App = () => {
           <NavLink to={'/'} className="header-link">
             Home
           </NavLink>
-          <NavLink to={'/movies'} className="header-link">
-            Movies
+          <NavLink to={'/catalog'} className="header-link">
+            Catalog
+          </NavLink>
+          <NavLink to={'/favorites'} className="header-link">
+            Favorites
           </NavLink>
         </nav>
       </header>
@@ -31,8 +35,8 @@ export const App = () => {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Search />} />
-          <Route path="/movies/:movieId/*" element={<MovieInfo />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </Suspense>
     </StyledContainer>
