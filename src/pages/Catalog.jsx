@@ -2,14 +2,14 @@ import React from 'react';
 // import { useState } from 'react-router-dom';
 // import { Blocks } from 'react-loader-spinner';
 import { CarList } from 'components/CarsList/CarList';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { allCarsThunk } from '../redux/autosOperations';
-import { selectCars } from '../redux/cars.selectors';
+// import { selectCars } from '../redux/cars.selectors';
 
 const Catalog = () => {
   const disputch = useDispatch();
-  const cars = useSelector(selectCars);
+  // const cars = useSelector(selectCars);
 
   useEffect(() => {
     disputch(allCarsThunk());

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { getMovieByKeyWord } from 'service/moviesAPI';
+// import React, { useEffect, useState } from 'react';
+// import { Link, useLocation, useSearchParams } from 'react-router-dom';
+// import { getMovieByKeyWord } from 'service/moviesAPI';
 
 const Favorites = () => {
   // const [movies, setMovies] = useState(null);
