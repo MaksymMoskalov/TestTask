@@ -1,11 +1,33 @@
 import styled from 'styled-components';
 
 export const StyledCarItem = styled.li`
+  position: relative;
   width: 274px;
   height: 426px;
   border-radius: 14px;
 
   font-family: Manrope;
+`;
+
+export const FavoutiteBtn = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 16px;
+  left: 243px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+
+  .icon {
+    display: block;
+    width: 18px;
+    height: 16px;
+    color: blue;
+  }
 `;
 
 export const StyledImgWrapper = styled.div`

@@ -1,37 +1,28 @@
-// import React, { useEffect, useState } from 'react';
-// import { Link, useLocation, useSearchParams } from 'react-router-dom';
-// import { getMovieByKeyWord } from 'service/moviesAPI';
+import { CarList } from 'components/CarsList/CarList';
+import { selectFavouriteCars } from '../redux/cars.selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { handlModalClose } from '../redux/autosReduser';
+import { useState } from 'react';
+import { CarModal } from 'components/Modal/Modal';
 
 const Favorites = () => {
-  // const [movies, setMovies] = useState(null);
-  // const [error, setError] = useState(null);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const query = searchParams.get('query');
-  // const location = useLocation();
-  // useEffect(() => {
-  //   if (!query) return;
+  const disputch = useDispatch();
+  const favouriteCars = useSelector(selectFavouriteCars);
+  const [openModal, setOpenModal] = useState(false);
 
-  //   const searchedMovies = async () => {
-  //     try {
-  //       const movieData = await getMovieByKeyWord(query);
-  //       console.log('movieData: ', movieData);
+  const toglModal = () => {
+    setOpenModal(!openModal);
+    disputch(handlModalClose(null));
+  };
 
-  //       setMovies(movieData);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     }
-  //   };
-  //   searchedMovies();
-  // }, [query]);
-
-  // const hendleFormSubmit = event => {
-  //   event.preventDefault();
-  //   const movieInSearch = event.currentTarget.elements.movieTitle.value;
-
-  //   setSearchParams({ query: movieInSearch });
-  // };
-
-  return;
+  return (
+    <>
+      <section>
+        <CarList openModal={toglModal} cars={favouriteCars} />
+      </section>
+      {openModal && <CarModal closeModal={toglModal} />}
+    </>
+  );
 };
 
 export default Favorites;

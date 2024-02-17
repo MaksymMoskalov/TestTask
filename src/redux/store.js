@@ -14,10 +14,10 @@ import storage from 'redux-persist/lib/storage';
 import { autoReducer } from './autosReduser';
 
 const favCarConfig = {
-  key: 'favCar',
+  key: 'cars',
   version: 1,
   storage,
-  whitelist: ['token'],
+  whitelist: ['favouriteCars'],
 };
 
 const rootReducer = combineReducers({

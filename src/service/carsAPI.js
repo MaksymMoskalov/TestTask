@@ -14,3 +14,8 @@ export const requestAllCars = async (page = 1) => {
   const { data } = await instance.get(`advert`, config);
   return data;
 };
+
+export const requestCar = async id => {
+  const { data } = await instance.get(`advert/${id}`);
+  return data;
+};
