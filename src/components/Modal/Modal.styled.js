@@ -137,10 +137,10 @@ export const Condition = styled.p`
   }
 `;
 
-export const RentBtn = styled.button`
+export const RentBtn = styled.a`
   display: block;
-  width: 168px;
-  height: 44px;
+  width: 68px;
+  height: 20px;
   background-color: #3470ff;
   padding: 12px 50px;
   border-radius: 12px;
@@ -148,6 +148,10 @@ export const RentBtn = styled.button`
   color: #fff;
   margin-top: 15px;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 
   &:hover {
     background-color: #0b44cd;

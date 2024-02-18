@@ -106,7 +106,7 @@ export function CarModal({ closeModal }) {
               Price:{' '}
               <Acsent className="condition-acs">{carData.rentalPrice}</Acsent>
             </Condition>
-            <RentBtn type="button">Rental car</RentBtn>
+            <RentBtn href="tel:+123456789">Rental car</RentBtn>
           </>
         )}
         {isLoading && (
