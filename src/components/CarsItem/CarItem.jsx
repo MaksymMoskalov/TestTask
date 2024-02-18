@@ -63,9 +63,9 @@ export const CarItem = ({ carItemData, openModal }) => {
         </h2>
         <p className="car-title"> {rentalPrice}</p>
       </StyledTitleWrapper>
-      <StyledShortInfo>{`${addressPart[1].trim()} | ${addressPart[2].trim()} | ${rentalCompany} | ${type} | ${make} | ${mileage} | ${
-        functionalities[0]
-      }`}</StyledShortInfo>
+      <StyledShortInfo>{`${addressPart[1].trim()} | ${addressPart[2].trim()} | ${rentalCompany} | ${type} | ${make} | ${mileage.toLocaleString(
+        'en-US'
+      )} | ${functionalities[0]}`}</StyledShortInfo>
       <StyledMoreButton type="button" onClick={openModal}>
         Learn more
       </StyledMoreButton>
