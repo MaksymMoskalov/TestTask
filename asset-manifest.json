@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/TestTask/static/css/main.15ff5e99.css",
-    "main.js": "/TestTask/static/js/main.68a6597a.js",
-    "static/js/229.bf80413a.chunk.js": "/TestTask/static/js/229.bf80413a.chunk.js",
+    "main.js": "/TestTask/static/js/main.da8d472f.js",
+    "static/js/229.ce3ae034.chunk.js": "/TestTask/static/js/229.ce3ae034.chunk.js",
     "static/js/145.794d80c9.chunk.js": "/TestTask/static/js/145.794d80c9.chunk.js",
     "static/js/41.e95e717c.chunk.js": "/TestTask/static/js/41.e95e717c.chunk.js",
     "static/js/508.b29fd954.chunk.js": "/TestTask/static/js/508.b29fd954.chunk.js",
     "static/js/574.8054a27a.chunk.js": "/TestTask/static/js/574.8054a27a.chunk.js",
-    "static/js/670.7d41c911.chunk.js": "/TestTask/static/js/670.7d41c911.chunk.js",
+    "static/js/257.0921d8ff.chunk.js": "/TestTask/static/js/257.0921d8ff.chunk.js",
     "static/media/home.png": "/TestTask/static/media/home.8770acabfb11dea34050.png",
     "static/media/heart.svg": "/TestTask/static/media/heart.68540013d0f3e84e5b798f39d2d86596.svg",
     "index.html": "/TestTask/index.html",
     "static/media/heartUncheckd.svg": "/TestTask/static/media/heartUncheckd.de075ead89f353ce21c692b357c4d40d.svg",
     "main.15ff5e99.css.map": "/TestTask/static/css/main.15ff5e99.css.map",
-    "main.68a6597a.js.map": "/TestTask/static/js/main.68a6597a.js.map",
-    "229.bf80413a.chunk.js.map": "/TestTask/static/js/229.bf80413a.chunk.js.map",
+    "main.da8d472f.js.map": "/TestTask/static/js/main.da8d472f.js.map",
+    "229.ce3ae034.chunk.js.map": "/TestTask/static/js/229.ce3ae034.chunk.js.map",
     "145.794d80c9.chunk.js.map": "/TestTask/static/js/145.794d80c9.chunk.js.map",
     "41.e95e717c.chunk.js.map": "/TestTask/static/js/41.e95e717c.chunk.js.map",
     "508.b29fd954.chunk.js.map": "/TestTask/static/js/508.b29fd954.chunk.js.map",
     "574.8054a27a.chunk.js.map": "/TestTask/static/js/574.8054a27a.chunk.js.map",
-    "670.7d41c911.chunk.js.map": "/TestTask/static/js/670.7d41c911.chunk.js.map"
+    "257.0921d8ff.chunk.js.map": "/TestTask/static/js/257.0921d8ff.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.15ff5e99.css",
-    "static/js/main.68a6597a.js"
+    "static/js/main.da8d472f.js"
   ]
 }
