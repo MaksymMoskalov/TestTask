@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { selectBrandFilter } from '../../redux/cars.selectors';
 import { handlBrandFilter } from '../../redux/autosReduser';
+import { FilterForm, FilterLable, FilterSubmitBtn } from './Filter.styled';
 
-const options = [
+const carBrands = [
   { value: '', label: 'All' },
   { value: 'Buick', label: 'Buick' },
   { value: 'Volvo', label: 'Volvo' },
@@ -29,31 +29,42 @@ const options = [
 ];
 
 export const Filter = () => {
-  const brandFilter = useSelector(selectBrandFilter);
   const dispatch = useDispatch();
+  const [brand, setBand] = useState({ value: '', label: 'All' });
 
-  const handleChange = selected => {
-    dispatch(handlBrandFilter(selected));
+  const handleBrandFilterChange = selected => {
+    setBand(selected);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    dispatch(handlBrandFilter(brand));
   };
 
   return (
-    <form>
-      <label>
-        <span>Car brand</span>
-        <Select value={brandFilter} onChange={handleChange} options={options} />
-      </label>
-      <label>
-        <span>Price/ 1 hour</span>
-        <input type="text" />
-      </label>
-      <label>
-        <span>Сar mileage / km</span>
-        <input type="text" />
-      </label>
-      <label>
-        <input type="text" />
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <FilterForm onSubmit={onSubmit}>
+      <FilterLable>
+        <span className="input-desc">Car brand</span>
+        <Select
+          value={brand}
+          onChange={handleBrandFilterChange}
+          options={carBrands}
+          className="form-input"
+          styles={{
+            control: (baseStyles, state) => ({
+              ...baseStyles,
+
+              borderRadius: 14,
+              backgroundColor: '#F7F7FB',
+              borderColor: 'transparent',
+              '&:hover': {
+                borderColor: '#3470FF',
+              },
+            }),
+          }}
+        />
+      </FilterLable>
+      <FilterSubmitBtn type="submit">Search</FilterSubmitBtn>
+    </FilterForm>
   );
 };

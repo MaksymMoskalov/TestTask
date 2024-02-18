@@ -11,3 +11,11 @@ export const favouriteMatcher = (arr1, arr2) => {
 
   return result;
 };
+
+export const calcPriceDiap = (from, to) => {
+  const diap = [];
+  for (let i = from; i <= to; i += 10) {
+    diap.push({ value: i, label: i });
+  }
+  return diap;
+};

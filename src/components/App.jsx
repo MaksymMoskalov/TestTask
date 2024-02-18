@@ -1,28 +1,17 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { StyledContainer } from 'Styles/Container.styled';
 import { Suspense, lazy } from 'react';
 import { Blocks } from 'react-loader-spinner';
+import { Header } from './Header/Header';
 
-const Home = lazy(() => import('pages/Home'));
-const Catalog = lazy(() => import('pages/Catalog'));
-const Favorites = lazy(() => import('pages/Favorites'));
+const Home = lazy(() => import('pages/Home/Home'));
+const Catalog = lazy(() => import('pages/Catalog/Catalog'));
+const Favorites = lazy(() => import('pages/Fovorites/Favorites'));
 
 export const App = () => {
   return (
     <StyledContainer>
-      <header className="header">
-        <nav>
-          <NavLink to={'/'} className="header-link">
-            Home
-          </NavLink>
-          <NavLink to={'/catalog'} className="header-link">
-            Catalog
-          </NavLink>
-          <NavLink to={'/favorites'} className="header-link">
-            Favorites
-          </NavLink>
-        </nav>
-      </header>
+      <Header />
       <Suspense
         fallback={
           <Blocks

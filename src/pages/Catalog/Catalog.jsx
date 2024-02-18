@@ -1,7 +1,7 @@
 import { CarList } from 'components/CarsList/CarList';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { allCarsThunk, loadMoreCarsThunk } from '../redux/autosOperations';
+import { allCarsThunk, loadMoreCarsThunk } from '../../redux/autosOperations';
 import {
   selectIsLoading,
   selectFact,
@@ -9,11 +9,12 @@ import {
   selectPage,
   selectCars,
   selectBrandFilter,
-} from '../redux/cars.selectors';
-import { Blocks } from 'react-loader-spinner';
+} from '../../redux/cars.selectors';
 import { Filter } from 'components/Filter/Filter';
 import { CarModal } from 'components/Modal/Modal';
-import { handlModalClose } from '../redux/autosReduser';
+import { handlModalClose } from '../../redux/autosReduser';
+import { Loader } from 'components/Loader/Loader';
+import { CatalogSection, LoadMore } from './Catalog.styled';
 
 const Catalog = () => {
   const disputch = useDispatch();
@@ -39,33 +40,26 @@ const Catalog = () => {
   };
 
   const filteredCars = () => {
-    return cars.filter(car => {
-      return car.make.includes(brandFilter);
+    const filteredCars = cars.filter(car => {
+      return car.make.includes(brandFilter.value);
     });
+    return filteredCars;
   };
   const carsByBrand = filteredCars();
   return (
     <>
-      <section>
+      <CatalogSection>
         <Filter />
         <CarList openModal={toglModal} cars={carsByBrand} />
-        {fact < total ? (
-          <button type="button" onClick={onLoadMore}>
-            Load more
-          </button>
+        {fact >= total || fact === 0 ? (
+          <></>
         ) : (
-          <p>You have reviewed all the cars</p>
+          <LoadMore type="button" onClick={onLoadMore}>
+            Load more
+          </LoadMore>
         )}
-
-        {isLoading && (
-          <Blocks
-            height="150"
-            width="150"
-            color="#4fa94d"
-            wrapperClass="blocks-wrapper"
-          />
-        )}
-      </section>
+        {isLoading && <Loader />}
+      </CatalogSection>
       {openModal && <CarModal closeModal={toglModal} />}
     </>
   );

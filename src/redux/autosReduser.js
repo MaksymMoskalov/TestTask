@@ -7,12 +7,13 @@ import {
 import { favouriteMatcher } from 'service/matcher';
 
 const INITIAL_STATE = {
-  cars: null,
+  cars: [],
   carData: null,
   favouriteCars: null,
-  brandFilter: '',
+  brandFilter: { value: '', label: 'All' },
+  priceFilter: { value: '', label: 'To $' },
   page: 1,
-  fact: 12,
+  fact: 0,
   total: 25,
   isLoading: false,
   error: null,
@@ -50,24 +51,39 @@ const autoSlice = createSlice({
     },
     handlBrandFilter(state, action) {
       state.brandFilter = action.payload;
+      state.fact = 0;
+    },
+    handlResetCatalog(state, _) {
+      state.cars = [];
+      state.page = 1;
+      state.fact = 0;
+      state.brandFilter = { value: '', label: 'All' };
+      state.priceFilter = { value: '', label: 'To $' };
+      state.carData = null;
     },
   },
   extraReducers: builder =>
     builder
       .addCase(allCarsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.cars = action.payload.map(car => {
-          return (car = { ...car, favourite: false });
-        });
+        state.cars = [
+          ...action.payload.map(car => {
+            return (car = { ...car, favourite: false });
+          }),
+        ];
         if (state.favouriteCars) {
           state.cars = favouriteMatcher(state.cars, state.favouriteCars);
         }
         state.page = state.page + 1;
+        state.fact = 12;
         state.error = null;
       })
       .addCase(loadMoreCarsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cars = [...state.cars, ...action.payload];
+        if (state.favouriteCars) {
+          state.cars = favouriteMatcher(state.cars, state.favouriteCars);
+        }
         state.fact = state.fact + 12;
         state.page = state.page + 1;
         state.error = null;
@@ -106,5 +122,6 @@ export const {
   handlFavouriteAdd,
   handlFavouriteDell,
   handlBrandFilter,
+  handlResetCatalog,
 } = autoSlice.actions;
 export const autoReducer = autoSlice.reducer;

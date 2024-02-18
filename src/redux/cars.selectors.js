@@ -6,3 +6,4 @@ export const selectPage = state => state.cars.page;
 export const selectCarData = state => state.cars.carData;
 export const selectFavouriteCars = state => state.cars.favouriteCars;
 export const selectBrandFilter = state => state.cars.brandFilter;
+export const selectPriceFilter = state => state.cars.priceFilter;

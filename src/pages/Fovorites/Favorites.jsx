@@ -1,14 +1,23 @@
 import { CarList } from 'components/CarsList/CarList';
-import { selectFavouriteCars } from '../redux/cars.selectors';
+import {
+  selectFavouriteCars,
+  selectIsLoading,
+} from '../../redux/cars.selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { handlModalClose } from '../redux/autosReduser';
-import { useState } from 'react';
+import { handlModalClose, handlResetCatalog } from '../../redux/autosReduser';
+import { useEffect, useState } from 'react';
 import { CarModal } from 'components/Modal/Modal';
+import { Loader } from 'components/Loader/Loader';
 
 const Favorites = () => {
   const disputch = useDispatch();
   const favouriteCars = useSelector(selectFavouriteCars);
+  const isLoading = useSelector(selectIsLoading);
   const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    disputch(handlResetCatalog());
+  }, [disputch]);
 
   const toglModal = () => {
     setOpenModal(!openModal);
@@ -21,6 +30,7 @@ const Favorites = () => {
         <CarList openModal={toglModal} cars={favouriteCars} />
       </section>
       {openModal && <CarModal closeModal={toglModal} />}
+      {isLoading && <Loader />}
     </>
   );
 };

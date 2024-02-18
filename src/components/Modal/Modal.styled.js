@@ -18,7 +18,8 @@ export const CarModalContent = styled.div`
 
   display: block;
   width: 460px;
-  height: 670px;
+  min-height: 600px;
+  max-height: 700px;
   padding: 40px;
   border-radius: 24px;
   background-color: white;
@@ -137,6 +138,10 @@ export const RentBtn = styled.button`
   border-radius: 12px;
   border-color: transparent;
   color: #fff;
-
   margin-top: 15px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #0b44cd;
+  }
 `;

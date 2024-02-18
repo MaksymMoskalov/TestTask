@@ -83,4 +83,9 @@ export const StyledMoreButton = styled.button`
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #0b44cd;
+  }
 `;
