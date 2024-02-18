@@ -23,6 +23,14 @@ export const CarModalContent = styled.div`
   padding: 40px;
   border-radius: 24px;
   background-color: white;
+
+  .modal-loader {
+    display: block;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+  }
 `;
 
 export const ExitBtn = styled.button`

@@ -3,6 +3,7 @@ import { StyledContainer } from 'Styles/Container.styled';
 import { Suspense, lazy } from 'react';
 import { Blocks } from 'react-loader-spinner';
 import { Header } from './Header/Header';
+import { Loader } from './Loader/Loader';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Catalog = lazy(() => import('pages/Catalog/Catalog'));
@@ -12,16 +13,7 @@ export const App = () => {
   return (
     <StyledContainer>
       <Header />
-      <Suspense
-        fallback={
-          <Blocks
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="blocks-loading"
-          />
-        }
-      >
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />

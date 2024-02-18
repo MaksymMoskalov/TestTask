@@ -17,10 +17,12 @@ import {
   RentBtn,
 } from './Modal.styled';
 import { RxCross2 } from 'react-icons/rx';
-import { selectCarData } from '../../redux/cars.selectors';
+import { selectCarData, selectIsLoading } from '../../redux/cars.selectors';
+import { Blocks } from 'react-loader-spinner';
 
 export function CarModal({ closeModal }) {
   const carData = useSelector(selectCarData);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     window.addEventListener('keydown', hendleKeyDown);
@@ -106,6 +108,16 @@ export function CarModal({ closeModal }) {
             </Condition>
             <RentBtn type="button">Rental car</RentBtn>
           </>
+        )}
+        {isLoading && (
+          <div className="modal-loader">
+            <Blocks
+              visible={true}
+              height="100"
+              width="100"
+              ariaLabel="blocks-loading"
+            />
+          </div>
         )}
       </CarModalContent>
     </Overlay>
