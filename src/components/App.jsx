@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { StyledContainer } from 'Styles/Container.styled';
 import { Suspense, lazy } from 'react';
-import { Blocks } from 'react-loader-spinner';
 import { Header } from './Header/Header';
 import { Loader } from './Loader/Loader';
 
