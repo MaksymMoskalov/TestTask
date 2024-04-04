@@ -6,13 +6,13 @@ export const Header = () => {
     <StyledHeader>
       <StyledNavigation>
         <NavLink to={'/'} className="header-link">
-          Home
+          HomE
         </NavLink>
         <NavLink to={'/catalog'} className="header-link">
-          Catalog
+          CataloG
         </NavLink>
         <NavLink to={'/favorites'} className="header-link">
-          Favorites
+          FavoriteS
         </NavLink>
       </StyledNavigation>
     </StyledHeader>
